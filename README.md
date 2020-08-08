@@ -1,22 +1,18 @@
 # Reinforcement-Learning
 Q Learning For the game Nim
 
-This should not be particularly difficult, and you could probably get it done this week if you wished.
 A Q-learner that learns to play Nim.
 
-This project is an easy assignment.
-What I'm asking you to do is to complete the assignment, then
-"enhance" it in some way.  Try three heaps; try prioritorized sweeping
-(ask me); try comparing approaches to alpha, gamma, action-selection procedures,
+Try three heaps; try prioritorized sweeping;
+try comparing approaches to alpha, gamma, action-selection procedures,
 ways of implementing the "opponent, etc.  Try extending to 3-Heap Nim.
 Something fun.
 
-You might also try to analyze what happens when you try random opponents versus co-adaptive ones.  Advantages?  Disadvantages?
+Might also try to analyze what happens when you try random opponents versus co-adaptive ones.  Advantages?  Disadvantages?
 
 ABOUT NIM
 ---------
-There are several versions of Nim.  The version we will play is called 1-Heap Nim
-and it goes like this:
+There are several versions of Nim.  This version is called 1-Heap Nim and it goes like this:
 
 1. Put N sticks in a pile (called a "heap")
 2. Players take turns taking 1, 2, or 3 sticks out of the heap.
@@ -26,12 +22,12 @@ and it goes like this:
 LEARNING NIM
 ------------
 
-Our Q-learner will build a Q-table solely through playing itself over and over
+The Q-learner will build a Q-table solely through playing itself over and over
 again.  The table will tell it, ultimately, how smart it is to do a given move
 (take 1, 2, or 3 sticks) in a given state (number of sticks taken out so far).
 Q values will all start at 0.
 
-We will define the actions as follows:
+I define the actions as follows:
 
 Action 0: take 1 stick out
 Action 1: take 2 sticks out
@@ -41,7 +37,7 @@ Thus the action number is exactly 1- the number of sticks to take out.  Keep
 this in mind -- the Q table will store Q values by action number, NOT by
 sticks taken out.
 
-We will define the states as follows:
+I define the states as follows:
 
 State 0: no sticks removed from heap
 State 1: 1 stick removed from heap
@@ -54,9 +50,9 @@ some states at the high end of the table which represent, more or less,
 "negative heap sizes".  Of course, you can never play a negative heap size;
 such q-values will stay 0.
 
-Our Q table will be a STATE x ACTION array.  I have given you some functions
-which should make it easy to use this array:  NUM-STATES, NUM-ACTIONS,
-MAKE-Q-TABLE, MAX-Q, and MAX-ACTION.
+The Q table will be a STATE x ACTION array.  Some functions which should make
+it easy to use this array:  NUM-STATES, NUM-ACTIONS, MAKE-Q-TABLE, MAX-Q, and 
+MAX-ACTION.
 
 The Q learner will learn by playing itself: the learner records the current
 state, makes a move, lets the opponent make a move, then notes the new
@@ -67,11 +63,6 @@ After the Q learner has learned the game, then you can play the learner
 and see how well it does.
 
 
-WHAT YOU NEED TO DO
--------------------
-
-Your job is to implement several functions:
-
 Q-LEARNER
   (the Q update function)
 LEARN-NIM
@@ -81,12 +72,10 @@ PLAY-NIM
 BEST-ACTIONS
   (prints out the best actions believed so far)
 
-To help you, I've written a basic ALPHA function, and MAKE-USER-MOVE
-and ASK-IF-USER-GOES-FIRST functions.  I predict you will find them helpful.
 
 
 
-THE SECRET OF NIM (ugh, that was bad)
+THE SECRET OF NIM
 -----------------
 
 You can get an idea for how well these settings perform by seeing what's
@@ -112,15 +101,8 @@ it doesn't matter because you're guaranteed to lose at that heap size.  In essen
 you want to get your OPPONENT down to the <any> value (it's the 1 + 4A number).
 
 
-VERY STRONG HINT
-
 Keep in mind how the Q table is structured: actions are stored in the slot
 1 less than the number of sticks removed by that action.  And states go UP
 as more sticks are removed.   You may need to do some 1-'s and 1+'s to play
 the right action.
 
-
-INTERESTING TRIVIA
-
-Nim's been done a lot.  I was going to do tic-tac-toe, but decided it was too
-evil.  :-)
